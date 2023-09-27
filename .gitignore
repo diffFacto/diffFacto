@@ -1,15 +1,16 @@
 pretrained/
 work_dirs/
 build 
-__pycache__
-*/__pycache__
-*/*/__pycache__
+__pycache__/
+**/__pycache__/
 eggs/
 weights/
 part_eval_log/
 .eggs/
-*.egg-info/
+# *.egg-info/
 *.egg
+**/*.egg-info/
+# python/**/*.egg-info/
 dist
 develop-eggs/
 build/
