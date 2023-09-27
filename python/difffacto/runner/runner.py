@@ -371,7 +371,7 @@ class Runner:
                 return
             for k, v in results.items():
                 save_dict, eval_result = self.val_dataset.evaluate(v, self.save_num_batch, self.local_rank)
-                save_file = build_file(os.path.join("/orion/u/mikacuy/anchored_diffusion/", self.work_dir), prefix=f"val/{k}_{self.prefix}_{self.epoch}.npz")
+                save_file = build_file(self.work_dir, prefix=f"val/{k}_{self.prefix}_{self.epoch}.npz")
                 self.logger.print_log(f"Saving to {save_file}....")
                 np.savez_compressed(save_file,  **save_dict)
                 eval_result = {k:v for k, v in eval_result.items()}

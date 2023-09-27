@@ -10,17 +10,11 @@ ICCV 2023
 ## Introduction
 We introduce DiffFacto, a novel probabilistic generative model that learns the distribution of shapes with part-level control. We propose a factorization that models independent part style and part configuration distributions, and present a novel cross diffusion network that enables us to generate coherent and plausible shapes under our proposed factorization. Experiments show that our method is able to generate novel shapes with multiple axes of control. It generates plausible and coherent shape, while enabling various downstream editing applications such as shape interpolation, mixing and transformation editing. 
 
-```
-@inproceedings{nakayama2023difffacto,
-      title={DiffFacto: Controllable Part-Based 3D Point Cloud Generation with Cross Diffusion}, 
-      author={Kiyohiro Nakayama and Mikaela Angelina Uy and Jiahui Huang and Shi-Min Hu and Ke Li and Leonidas Guibas},
-      year={2023},
-      booktitle = {International Conference on Computer Vision (ICCV)},
-}
-```
-## Pretrained Models
-DiffFacto pretrained models can be downloaded [here](http://download.cs.stanford.edu/orion/scade/pretrained_models.zip).
 
+## Pretrained Models
+DiffFacto pretrained models can be downloaded [here](http://download.cs.stanford.edu/orion/DiffFacto/weights.zip).
+## Data
+The preprocessed data can be downloaded [here](http://download.cs.stanford.edu/orion/DiffFacto/data.zip).
 ## Code
 
 ### Environment Set-up
@@ -37,14 +31,36 @@ pip install pointnet2_ops_lib/
 # we install chamfer distance and emd metric for evaluation 
 pip install python/anchor_diff/metrics/chamfer_dist python/anchor_diff/metrics/emd
 ```
+Memory efficient attention using [xformer](https://github.com/facebookresearch/xformers) is supported if GPU memory becomes an issue. Please install a compatible version of xformer to save GPU memory. we have test with version 0.0.15. 
 ### Demo
-TODO
-
+To generate shapes using DiffFacto, please place the pretrained weights under `pretrained/` folder and the `root` flag under `dataset` in each of the config files `configs/gen_[chair/airplane/car/lamp].py` should point to the data directory. Then one can generate shapes by running 
+```
+python tools/run_net.py --config-file configs/gen_[chair/airplane/car/lamp].py  --task val --prefix [chair/airplane/car/lamp]
+```
 ### Training
-TODO
+We provide the training script for chair category. Other categories' training will come soon! 
+
 ```
-python ...
+# Change the root flag to point to the data directory 
+# To train the part stylizer and cross diffusion network, please run
+python tools/run_net.py --config-file configs/train_chair_stage1.py  --task train --prefix chair_stage1
 ```
+After the first stage training is complete, open the config file `configs/train_chair_stage2.py` and replace the `resume_path` path to the pretrained first stage weight. Then the second stage can be trained by running 
+```
+python tools/run_net.py --config-file configs/train_chair_stage2.py  --task train --prefix chair_stage2
+```
+By default the second stage training will run for 4000 epoches, but one can pick a suitable checkpoint in between. 
+
 
 ## License
 This repository is released under MIT License (see LICENSE file for details).
+
+## Citation
+```
+@inproceedings{nakayama2023difffacto,
+      title={DiffFacto: Controllable Part-Based 3D Point Cloud Generation with Cross Diffusion}, 
+      author={Kiyohiro Nakayama and Mikaela Angelina Uy and Jiahui Huang and Shi-Min Hu and Ke Li and Leonidas Guibas},
+      year={2023},
+      booktitle = {International Conference on Computer Vision (ICCV)},
+}
+```
