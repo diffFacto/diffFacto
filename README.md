@@ -31,7 +31,7 @@ pip install torchdiffeq==0.0.1 tqdm tensorboardX pypaml plyfile einops numpy==1.
 # we install pointnet2_ops 
 pip install pointnet2_ops_lib/
 # we install chamfer distance and emd metric for evaluation 
-pip install python/anchor_diff/metrics/chamfer_dist python/anchor_diff/metrics/emd
+pip install python/diffFacto/metrics/chamfer_dist python/diffFacto/metrics/emd
 # Lastly, we install diffFacto
 pip install -e .
 ```
