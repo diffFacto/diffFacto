@@ -19,6 +19,8 @@ The preprocessed data can be downloaded [here](http://download.cs.stanford.edu/o
 
 ### Environment Set-up
 ```bash
+# first clone the repo by 
+git clone https://github.com/diffFacto/diffFacto.git && cd diffFacto
 # Create conda environment with python 3.8
 conda create -n diffFacto python=3.8
 conda activate diffFacto
