@@ -1,0 +1,1 @@
+from .pointnet_segmentor import PointNetDenseCls
