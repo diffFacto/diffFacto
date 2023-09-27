@@ -19,13 +19,24 @@ We introduce DiffFacto, a novel probabilistic generative model that learns the d
 }
 ```
 ## Pretrained Models
-TODO
+DiffFacto pretrained models can be downloaded [here](http://download.cs.stanford.edu/orion/scade/pretrained_models.zip).
 
 ## Code
 
 ### Environment Set-up
-TODO
-
+```bash
+# Create conda environment with python 3.8
+conda create -n diffFacto python=3.8
+conda activate diffFacto
+# we use torch 1.12.1 and CUDA 11.3
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+# we insall other dependencies
+pip install torchdiffeq==0.0.1 tqdm tensorboardX pypaml plyfile einops numpy==1.23.5 scipy scikit-learn einops
+# we install pointnet2_ops 
+pip install pointnet2_ops_lib/
+# we install chamfer distance and emd metric for evaluation 
+pip install python/anchor_diff/metrics/chamfer_dist python/anchor_diff/metrics/emd
+```
 ### Demo
 TODO
 
