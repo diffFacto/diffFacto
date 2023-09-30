@@ -35,7 +35,7 @@ pip install python/diffFacto/metrics/chamfer_dist python/diffFacto/metrics/emd
 # Lastly, we install diffFacto
 pip install -e .
 ```
-Memory efficient attention using [xformer](https://github.com/facebookresearch/xformers) is supported if GPU memory is an issue. Please install a compatible version of xformer to save GPU memory. we have test with version `0.0.15`. 
+Memory efficient attention using [xformer](https://github.com/facebookresearch/xformers) is supported if GPU memory is an issue. Please install a compatible version of xformer to save GPU memory. we have tested with version `0.0.15`. 
 ### Demo
 To generate shapes using DiffFacto, please place the pretrained weights under `pretrained/` folder and the `root` flag under `dataset` in each of the config files `configs/gen_[chair/airplane/car/lamp].py` should point to the data directory. Then one can generate shapes by running 
 ```
