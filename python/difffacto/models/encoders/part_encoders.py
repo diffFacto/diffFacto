@@ -1107,7 +1107,8 @@ class PartEncoder(nn.Module):
         mean_per_point, logvar_per_point, _ = self.gather_all(seg_mask, anchors=mean, variances=logvar + self.log_scale_var if logvar is not None else logvar)
         ctx = self.prepare_ctx(part_code, mean, logvar + self.log_scale_var if logvar is not None else logvar, anchor_assignments=seg_mask)
         print(mean_per_point.shape, logvar_per_point.shape, seg_mask.shape, valid_id.shape)
-        return ctx, mean_per_point, logvar_per_point, seg_mask, valid_id, [part_code, mean, logvar, noise]
+        # return ctx, mean_per_point, logvar_per_point, seg_mask, valid_id, [part_code, mean, logvar, noise]
+        return ctx, mean_per_point, logvar_per_point, seg_mask, valid_id
     
     
     def get_prior_loss_part(self, part_code, mean, logvar, i, epoch=-1):
